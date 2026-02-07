@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Driving Force</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f9fafb;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+        }
+
+        .search-bar-container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .search-btn {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .results-header {
+            margin-bottom: 30px;
+        }
+
+        .results-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .results-count {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .trainer-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .trainer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .trainer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .trainer-info {
+            flex: 1;
+        }
+
+        .trainer-avatar {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .trainer-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .trainer-location {
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
+        }
+
+        .rating-text {
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .trainer-price {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .price-amount {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .trainer-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .trainer-bio {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .trainer-features {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .trainer-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #25D366;
+            color: white;
+        }
+
+        .no-results {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .no-results-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .no-results-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .no-results-text {
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .trainer-header {
+                flex-direction: column;
+            }
+
+            .trainer-price {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .trainer-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav">
+            <div class="logo-section">
+                <div class="logo">🏍️</div>
+                <div class="brand-name">DRIVING FORCE</div>
+            </div>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <div class="search-bar-container">
+        <div class="search-bar">
+            <input type="text" 
+                   class="search-input" 
+                   id="pincodeSearch" 
+                   placeholder="Search by pincode..."
+                   maxlength="6">
+            <button class="search-btn" onclick="searchAgain()">Search</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="results-header">
+            <h1 class="results-title">Trainers in Pincode: <span id="currentPincode"></span></h1>
+            <p class="results-count" id="resultsCount">Loading...</p>
+        </div>
+
+        <div class="filters">
+            <div class="filter-title">Filter by:</div>
+            <div class="filter-options">
+                <button class="filter-btn active" onclick="filterBy('all')">All Trainers</button>
+                <button class="filter-btn" onclick="filterBy('scooty')">Scooty Only</button>
+                <button class="filter-btn" onclick="filterBy('bike')">Bike Only</button>
+                <button class="filter-btn" onclick="filterBy('beginner')">Beginner Friendly</button>
+                <button class="filter-btn" onclick="filterBy('vehicle-provided')">Vehicle Provided</button>
+            </div>
+        </div>
+
+        <div id="trainersContainer">
+            <!-- Trainers will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample trainer data (In production, this would come from a database)
+        const trainerDatabase = [
+            {
+                id: 1,
+                name: "Satya",
+                pincode: "522503",
+                city: "Guntur",
+                district: "Guntur",
+                phone: "9490092115",
+                whatsapp: "9490092115",
+                price: 2500,
+                rating: 4.8,
+                reviews: 45,
+                experience: 5,
+                vehicleType: ["scooty"],
+                levels: ["beginner", "intermediate", "advanced"],
+                vehicleProvided: true,
+                availability: "Mon-Sun, 6:00 AM - 9:00 AM",
+                bio: "Experienced scooty trainer with 5+ years of teaching experience. Specializing in building confidence for beginners. Patient and friendly approach.",
+                features: ["All Levels", "Vehicle Provided", "Flexible Timings", "Female Friendly"]
+            },
+            {
+                id: 2,
+                name: "Ramesh Kumar",
+                pincode: "522503",
+                city: "Guntur",
+                district: "Guntur",
+                phone: "9876543210",
+                whatsapp: "9876543210",
+                price: 3000,
+                rating: 4.9,
+                reviews: 67,
+                experience: 8,
+                vehicleType: ["scooty", "bike"],
+                levels: ["beginner", "intermediate", "advanced"],
+                vehicleProvided: true,
+                availability: "Mon-Sat, 5:00 AM - 8:00 AM",
+                bio: "Professional bike and scooty trainer. Certified instructor with focus on road safety and traffic rules. 8 years of experience.",
+                features: ["Scooty & Bike", "Certified Trainer", "Safety First", "Beginner Friendly"]
+            }
+        ];
+
+        // Get pincode from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchPincode = urlParams.get('pincode') || '522503';
+        
+        // Set current pincode
+        document.getElementById('currentPincode').textContent = searchPincode;
+        document.getElementById('pincodeSearch').value = searchPincode;
+
+        let currentFilter = 'all';
+
+        // Load trainers
+        function loadTrainers() {
+            const container = document.getElementById('trainersContainer');
+            
+            // Filter trainers by pincode
+            let trainers = trainerDatabase.filter(t => t.pincode === searchPincode);
+
+            // Apply additional filters
+            if (currentFilter !== 'all') {
+                trainers = trainers.filter(t => {
+                    switch(currentFilter) {
+                        case 'scooty':
+                            return t.vehicleType.includes('scooty');
+                        case 'bike':
+                            return t.vehicleType.includes('bike');
+                        case 'beginner':
+                            return t.levels.includes('beginner');
+                        case 'vehicle-provided':
+                            return t.vehicleProvided;
+                        default:
+                            return true;
+                    }
+                });
+            }
+
+            // Update count
+            document.getElementById('resultsCount').textContent = 
+                `${trainers.length} trainer${trainers.length !== 1 ? 's' : ''} found`;
+
+            if (trainers.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">😞</div>
+                        <h2 class="no-results-title">No trainers found in this area</h2>
+                        <p class="no-results-text">We're expanding! Try searching nearby pincodes or check back soon.</p>
+                        <a href="index.html" class="btn btn-primary" style="display: inline-block; max-width: 300px; margin: 0 auto;">← Back to Search</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Generate trainer cards
+            container.innerHTML = trainers.map(trainer => `
+                <div class="trainer-card">
+                    <div class="trainer-header">
+                        <div class="trainer-info">
+                            <div class="trainer-avatar">👨‍🏫</div>
+                            <h2 class="trainer-name">${trainer.name}</h2>
+                            <div class="trainer-location">📍 ${trainer.city}, ${trainer.district} - ${trainer.pincode}</div>
+                            <div class="rating">
+                                <span class="stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-text">${trainer.rating} (${trainer.reviews} reviews)</span>
+                            </div>
+                        </div>
+                        <div class="trainer-price">
+                            <div class="price-amount">₹${trainer.price}</div>
+                            <div class="price-label">Complete Package</div>
+                        </div>
+                    </div>
+
+                    <div class="trainer-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Experience</div>
+                            <div class="detail-value">${trainer.experience} years</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Vehicle Type</div>
+                            <div class="detail-value">${trainer.vehicleType.join(', ')}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Availability</div>
+                            <div class="detail-value">${trainer.availability}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Vehicle Provided</div>
+                            <div class="detail-value">${trainer.vehicleProvided ? 'Yes' : 'No'}</div>
+                        </div>
+                    </div>
+
+                    <p class="trainer-bio">${trainer.bio}</p>
+
+                    <div class="trainer-features">
+                        ${trainer.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+                    </div>
+
+                    <div class="trainer-actions">
+                        <a href="booking.html?trainer=${trainer.id}" class="btn btn-primary">📅 Book Now</a>
+                        <a href="https://wa.me/91${trainer.whatsapp}?text=Hi%20${trainer.name},%20I%20found%20you%20on%20Driving%20Force.%20I%20want%20to%20book%20training%20in%20${trainer.pincode}." 
+                           class="btn btn-secondary" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter function
+        function filterBy(filter) {
+            currentFilter = filter;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            loadTrainers();
+        }
+
+        // Search again function
+        function searchAgain() {
+            const pincode = document.getElementById('pincodeSearch').value.trim();
+            if (pincode.length === 6) {
+                window.location.href = `search-results.html?pincode=${pincode}`;
+            } else {
+                alert('Please enter a valid 6-digit pincode');
+            }
+        }
+
+        // Pincode input validation
+        document.getElementById('pincodeSearch').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Allow enter to search
+        document.getElementById('pincodeSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchAgain();
+            }
+        });
+
+        // Initial load
+        loadTrainers();
+    </script>
+</body>
+</html>

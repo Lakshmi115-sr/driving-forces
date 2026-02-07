@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Forces - Learn Two-Wheeler & Four-Wheeler Driving</title>
+    <meta name="description" content="Find professional driving training for bikes, scooters, and cars across Andhra Pradesh. Connect with expert trainers in your area.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f0f23;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(20px);
+            min-height: 100vh;
+            box-shadow: 0 0 100px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 40px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.8));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .brand-name {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 25px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .nav-link.cta {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .vehicle-types {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .vehicle-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .vehicle-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(102, 126, 234, 0.8);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .vehicle-icon {
+            font-size: 2.5rem;
+        }
+
+        /* Search Box */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .search-title {
+            color: #1f2937;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .pincode-input {
+            flex: 1;
+            padding: 20px;
+            border: 3px solid #e5e7eb;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .pincode-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn {
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .popular-areas {
+            text-align: center;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+
+        .area-tag {
+            display: inline-block;
+            background: #f3f4f6;
+            color: #667eea;
+            padding: 10px 20px;
+            margin: 8px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .area-tag:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            border-color: #667eea;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 40px;
+            background: rgba(15, 15, 35, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 70px;
+            background: linear-gradient(135deg, #fff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(240, 147, 251, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 10px rgba(102, 126, 234, 0.5));
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-desc {
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 40px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .step-desc {
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .cta-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 22px 50px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .cta-btn.primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-btn.secondary {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 15, 35, 0.95);
+            padding: 60px 40px 30px;
+            border-top: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #9ca3af;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .vehicle-types {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="nav">
+                <div class="logo-section">
+                    <div class="logo">🚗🏍️</div>
+                    <div class="brand-name">DRIVING FORCES</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="trainer-registration.html" class="nav-link">Become a Trainer</a>
+                    <a href="admin-login.html" class="nav-link cta">Admin Login</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 class="hero-title">Master the Road with Expert Trainers</h1>
+            <p class="hero-subtitle">Professional driving training for two-wheelers & four-wheelers across Andhra Pradesh</p>
+
+            <div class="vehicle-types">
+                <div class="vehicle-badge">
+                    <span class="vehicle-icon">🏍️</span>
+                    <span>Two-Wheeler Training</span>
+                </div>
+                <div class="vehicle-badge">
+                    <span class="vehicle-icon">🚗</span>
+                    <span>Four-Wheeler Training</span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <h2 class="search-title">🔍 Find Expert Trainers in Your Area</h2>
+                <div class="search-box">
+                    <input type="text" 
+                           class="pincode-input" 
+                           id="pincodeSearch" 
+                           placeholder="Enter your pincode (e.g., 522503)"
+                           maxlength="6">
+                    <button class="search-btn" onclick="searchTrainers()">Search Now</button>
+                </div>
+                <div class="popular-areas">
+                    <p style="margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;">Popular Areas:</p>
+                    <span class="area-tag" onclick="quickSearch('522503')">522503</span>
+                    <span class="area-tag" onclick="quickSearch('520001')">Vijayawada</span>
+                    <span class="area-tag" onclick="quickSearch('530001')">Visakhapatnam</span>
+                    <span class="area-tag" onclick="quickSearch('517501')">Tirupati</span>
+                    <span class="area-tag" onclick="quickSearch('533001')">Kakinada</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 class="section-title">Why Choose Driving Forces?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3 class="feature-title">Expert Trainers</h3>
+                    <p class="feature-desc">Learn from certified and experienced trainers for both bikes and cars</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏍️</div>
+                    <h3 class="feature-title">Two-Wheeler Mastery</h3>
+                    <p class="feature-desc">Scooty and bike training for all skill levels - beginner to advanced</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3 class="feature-title">Four-Wheeler Training</h3>
+                    <p class="feature-desc">Complete car driving lessons with focus on safety and confidence</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3 class="feature-title">Pan-Andhra Coverage</h3>
+                    <p class="feature-desc">Available across all major cities and towns in Andhra Pradesh</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Affordable Pricing</h3>
+                    <p class="feature-desc">Transparent pricing with no hidden charges. Pay only for what you learn</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3 class="feature-title">Flexible Timings</h3>
+                    <p class="feature-desc">Choose trainers with timings that suit your schedule perfectly</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Search Your Area</h3>
+                    <p class="step-desc">Enter your pincode to find trainers near you for bike or car training</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Choose Trainer</h3>
+                    <p class="step-desc">Compare trainers, check reviews, and pick the best fit for your needs</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Book Session</h3>
+                    <p class="step-desc">Select your preferred time slot and confirm booking securely online</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Start Learning</h3>
+                    <p class="step-desc">Meet your trainer and begin your journey to becoming a confident driver!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Start Your Driving Journey?</h2>
+            <p class="cta-subtitle">Join thousands of happy learners across Andhra Pradesh</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="document.getElementById('pincodeSearch').scrollIntoView({behavior: 'smooth'}); return false;" class="cta-btn primary">Find Trainers Now</a>
+                <a href="trainer-registration.html" class="cta-btn secondary">Become a Trainer</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DRIVING FORCES</h3>
+                    <p style="color: #9ca3af; line-height: 1.6;">Andhra Pradesh's most trusted platform for two-wheeler and four-wheeler driving training</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="trainer-registration.html">Become a Trainer</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="admin-login.html">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>For Trainers</h3>
+                    <ul>
+                        <li><a href="trainer-registration.html">Register Now</a></li>
+                        <li><a href="#">Pricing: ₹500/month + 15% commission</a></li>
+                        <li><a href="#">Trainer Guidelines</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: support@drivingforces.in</li>
+                        <li>Phone: +91 94900 92115</li>
+                        <li>Coverage: All AP Pincodes</li>
+                        <li>Services: 2-Wheeler & 4-Wheeler</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 Driving Forces. All rights reserved. | Two-Wheeler & Four-Wheeler Training Platform
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Only allow numbers in pincode input
+        document.getElementById('pincodeSearch').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Search trainers function
+        function searchTrainers() {
+            const pincode = document.getElementById('pincodeSearch').value.trim();
+            
+            if (pincode === '') {
+                alert('Please enter a pincode');
+                return;
+            }
+
+            if (pincode.length !== 6) {
+                alert('Please enter a valid 6-digit pincode');
+                return;
+            }
+
+            // Redirect to search results page
+            window.location.href = `search-results.html?pincode=${pincode}`;
+        }
+
+        // Quick search function
+        function quickSearch(pincode) {
+            document.getElementById('pincodeSearch').value = pincode;
+            searchTrainers();
+        }
+
+        // Allow enter key to search
+        document.getElementById('pincodeSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchTrainers();
+            }
+        });
+    </script>
+</body>
+</html>

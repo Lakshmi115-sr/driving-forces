@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Registration - Driving Force</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.95;
+        }
+
+        .pricing-banner {
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        label .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .time-slot:hover {
+            background: #e5e7eb;
+        }
+
+        .time-slot.selected {
+            background: #667eea;
+            color: white;
+            border-color: #5568d3;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #1f2937;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏍️ Become a Trainer</h1>
+            <p>Join Driving Force and earn by teaching two-wheeler riding</p>
+        </div>
+
+        <div class="pricing-banner">
+            💰 Listing Fee: ₹500/month + 15% commission per booking
+        </div>
+
+        <div class="form-container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+
+            <div class="info-box">
+                <h4>Benefits of Joining Driving Force:</h4>
+                <ul>
+                    <li>Get students from across Andhra Pradesh</li>
+                    <li>Manage your schedule & availability</li>
+                    <li>Set your own pricing</li>
+                    <li>Secure payment handling</li>
+                    <li>Build your reputation with reviews</li>
+                </ul>
+            </div>
+
+            <form id="trainerRegistrationForm">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" name="fullName" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" pattern="[0-9]{10}" maxlength="10" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp Number <span class="required">*</span></label>
+                        <input type="tel" name="whatsapp" pattern="[0-9]{10}" maxlength="10" required>
+                    </div>
+                </div>
+
+                <!-- Location Details -->
+                <div class="form-section">
+                    <h2 class="section-title">Service Location</h2>
+                    
+                    <div class="form-group">
+                        <label>Primary Pincode <span class="required">*</span></label>
+                        <input type="text" name="pincode" pattern="[0-9]{6}" maxlength="6" placeholder="e.g., 522503" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Pincodes You Serve (comma separated)</label>
+                        <input type="text" name="additionalPincodes" placeholder="e.g., 522504, 522505">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Address <span class="required">*</span></label>
+                        <textarea name="address" required></textarea>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>City <span class="required">*</span></label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>District <span class="required">*</span></label>
+                            <input type="text" name="district" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Details -->
+                <div class="form-section">
+                    <h2 class="section-title">Training Details</h2>
+                    
+                    <div class="form-group">
+                        <label>What do you teach? <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="vehicleType" value="scooty" id="scooty">
+                                <label for="scooty" style="margin: 0;">Scooty/Scooter</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="vehicleType" value="bike" id="bike">
+                                <label for="bike" style="margin: 0;">Bike/Motorcycle</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="vehicleType" value="both" id="both">
+                                <label for="both" style="margin: 0;">Both</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Training Levels <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="trainingLevel" value="beginner" id="beginner">
+                                <label for="beginner" style="margin: 0;">Beginner</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="trainingLevel" value="intermediate" id="intermediate">
+                                <label for="intermediate" style="margin: 0;">Intermediate</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="trainingLevel" value="advanced" id="advanced">
+                                <label for="advanced" style="margin: 0;">Advanced</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vehicle Availability <span class="required">*</span></label>
+                        <select name="vehicleAvailability" required>
+                            <option value="">Select...</option>
+                            <option value="own">I provide the vehicle</option>
+                            <option value="student">Student brings their own</option>
+                            <option value="both">Both options available</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Years of Experience <span class="required">*</span></label>
+                        <input type="number" name="experience" min="0" max="50" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pricing (per session/package) <span class="required">*</span></label>
+                        <input type="number" name="pricing" placeholder="e.g., 2500" required>
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="form-section">
+                    <h2 class="section-title">Availability</h2>
+                    
+                    <div class="form-group">
+                        <label>Available Days <span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="monday" id="monday">
+                                <label for="monday" style="margin: 0;">Monday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="tuesday" id="tuesday">
+                                <label for="tuesday" style="margin: 0;">Tuesday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="wednesday" id="wednesday">
+                                <label for="wednesday" style="margin: 0;">Wednesday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="thursday" id="thursday">
+                                <label for="thursday" style="margin: 0;">Thursday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="friday" id="friday">
+                                <label for="friday" style="margin: 0;">Friday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="saturday" id="saturday">
+                                <label for="saturday" style="margin: 0;">Saturday</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" name="days" value="sunday" id="sunday">
+                                <label for="sunday" style="margin: 0;">Sunday</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Start Time <span class="required">*</span></label>
+                            <input type="text" name="startTime" placeholder="e.g., 6:00 AM" required>
+                        </div>
+                        <div class="form-group">
+                            <label>End Time <span class="required">*</span></label>
+                            <input type="text" name="endTime" placeholder="e.g., 9:00 AM" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h2 class="section-title">Additional Information</h2>
+                    
+                    <div class="form-group">
+                        <label>About You / Bio</label>
+                        <textarea name="bio" placeholder="Tell us about your training style, experience, certifications..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Skills or Certifications</label>
+                        <textarea name="certifications" placeholder="e.g., Licensed trainer, First aid certified, 10+ years experience..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Phone number validation
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            input.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+
+        // Pincode validation
+        document.querySelector('input[name="pincode"]').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Form submission
+        document.getElementById('trainerRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // In a real application, this would send to a backend
+            console.log('Registration Data:', data);
+            
+            // Show success message
+            alert('Registration Successful! 🎉\n\nThank you for registering with Driving Force.\n\nOur admin team will review your application and contact you within 24-48 hours.\n\nYou will receive:\n1. Login credentials\n2. Payment details for ₹500/month listing fee\n3. Platform access instructions');
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
